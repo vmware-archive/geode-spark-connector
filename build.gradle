@@ -1,0 +1,84 @@
+/*
+ * Copyright 2016 Charlie Black
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+ext {
+    geodeVersion = '1.4.0'
+    junitVersion = '4.12'
+    sparkVersion = '2.3.0'
+    scalaVersion = '2.11.8'
+    scalaLog4jVersion = '11.0'
+    scalaCompatVersion = '0.8.0'
+    junitVersion = '4.12'
+    scalaTestVersion = '3.0.5'
+    mockitoVersion = '2.16.0'
+}
+
+
+description = 'Geode Spark Connector'
+
+allprojects {
+    apply plugin: "idea"
+    apply plugin: 'java'
+    apply plugin: 'scala'
+
+    group = 'org.apache.geode.spark.connector'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    dependencies {
+        compile "org.apache.geode:geode-core:$geodeVersion"
+        compile "org.apache.geode:geode-cq:$geodeVersion"
+        compile "org.apache.spark:spark-core_2.11:$sparkVersion"
+        compile "org.apache.spark:spark-sql_2.11:$sparkVersion"
+        compile "org.apache.spark:spark-streaming_2.11:$sparkVersion"
+        compile "org.scala-lang.modules:scala-java8-compat_2.11:$scalaCompatVersion"
+        testCompile "junit:junit:$junitVersion"
+        testCompile "org.scalatest:scalatest_2.11:$scalaTestVersion"
+        testCompile "org.mockito:mockito-core:$mockitoVersion"
+        //compile "org.apache.logging.log4j:log4j-api-scala_2.12:$scalaLog4jVersion"
+        //compile "org.scala-lang:scala-library:$scalaVersion"
+    }
+    repositories {
+        maven { url 'https://repo.spring.io/libs-release' }
+        maven { url 'https://repo.spring.io/libs-milestone' }
+        maven { url 'https://repo.spring.io/libs-snapshot' }
+
+        mavenCentral()
+    }
+    sourceSets {
+        main {
+            scala {
+                srcDirs = ['src/main/scala', 'src/main/java']
+            }
+            java {
+                srcDirs = []
+            }
+        }
+    }
+}
+project(':geode-functions') {
+
+}
+project(':geode-spark-connector') {
+    dependencies {
+        compile project(":geode-functions")
+    }
+}
+project(':geode-spark-demos') {
+    dependencies {
+        compile project(":geode-spark-connector")
+    }
+}
