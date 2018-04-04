@@ -83,12 +83,12 @@ public class QueryFunction implements Function {
         DataSerializer.writeObject(row, buf);
         if (buf.size() > CHUNK_SIZE) {
           sender.sendResult(buf.toByteArray());
-          logger.debug("OQL query=" + queryString + " bucket set=" + bucketSet + " sendResult(), data size=" + buf.size());
+          logger.info("OQL query=" + queryString + " bucketset=" + bucketSet + " sendResult(), data size=" + buf.size());
           buf.reset();
         }
       }
       sender.lastResult(buf.toByteArray());
-      logger.debug("OQL query=" + queryString + " bucket set=" + bucketSet + " lastResult(), data size=" + buf.size());
+      logger.info("OQL query=" + queryString + " bucketset=" + bucketSet + " lastResult(), data size=" + buf.size());
       buf.reset();
     }
     catch(Exception e) {
