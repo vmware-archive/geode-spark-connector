@@ -12,7 +12,7 @@ details. If you are new to Geode, this
 [Quick Start Guide](http://geode.apache.org/docs/guide/getting_started/15_minute_quickstart_gfsh.html)
 is a good starting point.
 
-You need 2 terminals to follow along, one for Geode shell `gfsh`, and one for Spark shell. Set up Jdk 1.7 on both of them.
+You need 2 terminals to follow along, one for Geode shell `gfsh`, and one for Spark shell. Set up Jdk 1.8 on both of them.
 
 ### Geode `gfsh` terminal
 In this terminal, start Geode cluster, deploy Spark Geode Connector's geode-function jar, and create demo regions.
@@ -22,7 +22,7 @@ Set up environment variables:
 export JAVA_HOME=<path to JAVA installation>
 export GEODE=<path to GEODE installation>
 export CONNECTOR=<path to Spark GEODE Connector project (parent dir of this file)>
-export CLASSPATH=$CLASSPATH:$GEODE/lib/locator-dependencies.jar:$GEODE/lib/server-dependencies.jar:$GEODE/lib/gfsh-dependencies.jar
+export CLASSPATH=$CLASSPATH:$GEODE/lib/geode-dependencies.jar:$GEODE/lib/gfsh-dependencies.jar
 export PATH=$PATH:$GEODE/bin
 export GF_JAVA=$JAVA_HOME/bin/java
 ```
@@ -41,9 +41,9 @@ gfsh>create region --name=str_str_region --type=PARTITION --key-constraint=java.
 gfsh>create region --name=int_str_region --type=PARTITION --key-constraint=java.lang.Integer --value-constraint=java.lang.String
 ```
 
-Deploy Spark Geode Connector's geode-function jar (`geode-functions_2.10-0.5.0.jar`):
+Deploy Spark Geode Connector's geode-function jar (`geode-functions-1.0.0.jar`):
 ```
-gfsh>deploy --jar=<path to connector project>/geode-functions/target/scala-2.10/geode-functions_2.10-0.5.0.jar
+gfsh>deploy --jar=<path to connector project>/geode-functions/build/libs/geode-functions-1.0.0.jar
 ```
 
 ### Spark shell terminal
@@ -69,7 +69,7 @@ under the same directory to `log4j.properties` and update the file.
 
 Start spark-shell:
 ```
-bin/spark-shell --master local[*] --jars $CONNECTOR/geode-spark-connector/target/scala-2.10/geode-spark-connector_2.10-0.5.0.jar,$GEODE/lib/server-dependencies.jar
+bin/spark-shell --master local[*] --jars $CONNECTOR/geode-spark-connector/build/libs/geode-spark-connector-1.0.0.jar,$GEODE/lib/geode-dependencies.jar
 ```
 
 Check Geode locator property in the Spark shell:
@@ -94,7 +94,7 @@ data: Array[(String, String)] = Array((1,one), (2,two), (3,three))
 scala> val distData = sc.parallelize(data)
 distData: org.apache.spark.rdd.RDD[(String, String)] = ParallelCollectionRDD[0] at parallelize at <console>:14
 
-scala> distData.saveToGemfire("str_str_region")
+scala> distData.saveToGeode("str_str_region")
 15/02/17 07:11:54 INFO DAGScheduler: Job 0 finished: runJob at GemFireRDDFunctions.scala:29, took 0.341288 s
 ```
 
@@ -126,7 +126,7 @@ data2: Array[String] = Array(a, ab, abc)
 scala> val distData2 = sc.parallelize(data2)
 distData2: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[0] at parallelize at <console>:17
 
-scala> distData2.saveToGemfire("int_str_region", e => (e.length, e))
+scala> distData2.saveToGeode("int_str_region", e => (e.length, e))
 [info 2015/02/17 12:43:21.174 PST <main> tid=0x1]
 ...
 15/02/17 12:43:21 INFO DAGScheduler: Job 0 finished: runJob at GemFireRDDFunctions.scala:52, took 0.251194 s
