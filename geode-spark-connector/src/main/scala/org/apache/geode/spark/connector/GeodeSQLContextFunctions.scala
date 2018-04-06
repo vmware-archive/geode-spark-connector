@@ -16,8 +16,6 @@
  */
 package org.apache.geode.spark.connector
 
-import java.beans.Transient
-
 import org.apache.geode.spark.connector.internal.oql.{OQLRelation, QueryRDD}
 import org.apache.log4j.Logger
 import org.apache.spark.sql.{DataFrame, SQLContext}
@@ -25,9 +23,9 @@ import org.apache.spark.sql.{DataFrame, SQLContext}
 /**
   * Provide Geode OQL specific functions
   */
-class GeodeSQLContextFunctions(@transient sqlContext: SQLContext) extends Serializable {
+class GeodeSQLContextFunctions(sqlContext: SQLContext) extends Serializable {
 
-  @Transient val LOG = Logger.getLogger(getClass.getName)
+  val LOG = Logger.getLogger(getClass.getName)
 
   /**
     * Expose a Geode OQL query result as a DataFrame

@@ -29,7 +29,7 @@ import scala.reflect.ClassTag
  * @param queryString The OQL query string
  * @param connConf The GeodeConnectionConf that provide the GeodeConnection
  */
-class QueryRDD[T](@transient sc: SparkContext,
+class QueryRDD[T](sc: SparkContext,
                   queryString: String,
                   connConf: GeodeConnectionConf)
                  (implicit ct: ClassTag[T])
