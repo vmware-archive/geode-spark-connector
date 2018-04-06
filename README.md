@@ -14,7 +14,7 @@ and expose the results as DataFrames.
 
 ## Version and Compatibility
 
-Spark Geode Connector supports Spark 1.3.
+Spark Geode Connector supports Spark 2.3.
 
 ## Documentation
  - [Building and testing](doc/1_building.md)
