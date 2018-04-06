@@ -23,7 +23,7 @@ import org.apache.geode.spark.connector.GeodeConnection
 import org.apache.geode.spark.connector.internal.rdd._
 import org.apache.spark.Partition
 import org.mockito.Mockito._
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{Matchers, FunSuite}
 
 import java.util.{HashSet => JHashSet, HashMap => JHashMap}

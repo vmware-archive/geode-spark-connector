@@ -20,7 +20,7 @@ import org.apache.geode.spark.connector._
 import org.apache.spark.SparkContext
 import org.apache.spark.sql.SQLContext
 import org.scalatest.FunSuite
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.scalatest.Matchers
 
 class ConnectorImplicitsTest extends FunSuite with Matchers with MockitoSugar {

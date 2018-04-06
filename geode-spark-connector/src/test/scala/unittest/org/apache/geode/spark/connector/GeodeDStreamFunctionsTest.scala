@@ -21,7 +21,7 @@ import org.apache.geode.spark.connector.{GeodeConnection, GeodeConnectionConf}
 import org.apache.spark.rdd.RDD
 import org.apache.spark.streaming.dstream.DStream
 import org.mockito.Mockito._
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{Matchers, FunSuite}
 import org.mockito.ArgumentMatchers._
 

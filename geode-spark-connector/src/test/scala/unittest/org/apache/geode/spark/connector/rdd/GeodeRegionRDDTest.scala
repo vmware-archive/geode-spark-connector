@@ -23,7 +23,7 @@ import org.apache.geode.spark.connector.{GeodeConnection, GeodeConnectionConf}
 import org.apache.spark.{Partition, SparkContext, TaskContext}
 
 import org.mockito.Mockito._
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSuite, Matchers}
 
 import scala.reflect.ClassTag

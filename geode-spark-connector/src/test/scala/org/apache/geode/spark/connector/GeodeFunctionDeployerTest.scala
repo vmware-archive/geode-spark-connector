@@ -17,7 +17,7 @@
 package org.apache.geode.spark.connector
 
 import org.mockito.Mockito._
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSuite, Matchers}
 import org.apache.commons.httpclient.HttpClient
 import java.io.File

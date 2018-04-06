@@ -18,7 +18,7 @@ package org.apache.geode.spark.connector.internal
 
 import org.apache.geode.spark.connector.GeodeConnectionConf
 import org.mockito.Mockito._
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSuite, Matchers}
 
 class DefaultGeodeConnectionManagerTest extends FunSuite  with Matchers with MockitoSugar {

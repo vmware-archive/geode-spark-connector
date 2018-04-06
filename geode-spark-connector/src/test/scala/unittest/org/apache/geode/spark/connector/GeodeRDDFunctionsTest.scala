@@ -23,7 +23,7 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkContext, TaskContext}
 import org.mockito.ArgumentMatchers._
 import org.mockito.Mockito._
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSuite, Matchers}
 
 import scala.collection.JavaConversions._
