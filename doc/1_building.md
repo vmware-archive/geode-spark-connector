@@ -1,6 +1,6 @@
 ## Building and Testing
 
-The spark connector is built with Scala 2.10 and sbt 0.13.5 to 0.13.7.
+The spark connector is built with Scala 2.11.
 
 ### Building Artifacts
 
