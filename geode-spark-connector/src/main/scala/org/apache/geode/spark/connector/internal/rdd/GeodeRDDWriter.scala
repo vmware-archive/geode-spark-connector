@@ -30,7 +30,7 @@ import scala.collection.Iterator
 private[rdd] abstract class GeodeRDDWriterBase(opConf: Map[String, String]) extends Serializable {
 
 
-  val batchSize = try {
+  val batchSize: Int = try {
     opConf.getOrElse(RDDSaveBatchSizePropKey, RDDSaveBatchSizeDefault.toString).toInt
   }
   catch {
@@ -52,7 +52,7 @@ private[rdd] abstract class GeodeRDDWriterBase(opConf: Map[String, String]) exte
 class GeodeRDDWriter[T, K, V]
 (regionPath: String, connConf: GeodeConnectionConf, opConf: Map[String, String] = Map.empty)
   extends GeodeRDDWriterBase(opConf) with Serializable {
-  @Transient val LOG = Logger.getLogger(getClass.getName);
+  @Transient lazy val LOG: Logger = Logger.getLogger(getClass.getName)
 
   def write(func: T => (K, V))(taskContext: TaskContext, data: Iterator[T]): Unit = {
     val region: Region[K, V] = connConf.getConnection.getRegionProxy[K, V](regionPath)
@@ -77,7 +77,7 @@ class GeodeRDDWriter[T, K, V]
 class GeodePairRDDWriter[K, V]
 (regionPath: String, connConf: GeodeConnectionConf, opConf: Map[String, String] = Map.empty)
   extends GeodeRDDWriterBase(opConf) with Serializable {
-  @Transient val LOG = Logger.getLogger(getClass.getName)
+  @Transient lazy val LOG: Logger = Logger.getLogger(getClass.getName)
 
   def write(taskContext: TaskContext, data: Iterator[(K, V)]): Unit = {
     val region: Region[K, V] = connConf.getConnection.getRegionProxy[K, V](regionPath)
