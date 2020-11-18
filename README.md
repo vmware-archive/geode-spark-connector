@@ -1,4 +1,4 @@
-# Spark Geode Connector
+<h1> VMware has ended active development of this project, this repository will no longer be updated.</h1><br># Spark Geode Connector
 
 Spark Geode Connector let's you connect Spark to Geode, expose Geode regions as Spark 
 RDDs, save Spark RDDs to Geode and execute Geode OQL queries in your Spark applications
